@@ -1,0 +1,23 @@
+body {
+  padding-top: 60px;
+}
+
+input, select{
+  width:120px;   	
+  border-style:solid;	
+	border-color: #ccc;
+	border-radius: 5px;
+	padding:5px;
+	margin-bottom: 2px; 
+   }
+
+  .fieldset {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom:15px;    
+  }
+
+  .trademark{
+    color:white;
+    padding:15px;
+  }

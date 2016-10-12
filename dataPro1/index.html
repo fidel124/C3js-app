@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="dataAnalysis">
+	<head>
+		<!-- Load c3.css -->
+    <script src="js/jquery.min.js" charset="utf-8"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="css/c3.min.css" rel="stylesheet" type="text/css">
+		<link href="css/app.css" rel="stylesheet" type="text/css">
+
+		<script src="js/bootstrap.min.js"></script>		
+		<script src="js/d3.min.js" charset="utf-8"></script>
+    <script src="js/c3.min.js"></script>    
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+      	 <div class="container">
+        	<div class="navbar-header">
+         	 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            	<span class="sr-only">Toggle navigation</span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+          	 </button>
+           	 <a class="navbar-brand" href="#">Sales Analysis</a>
+             <span class="nav navbar-nav navbar-right  trademark">By: Fidelis Ololube</span>             
+        	</div>
+
+        	<div id="navbar" class="collapse navbar-collapse">         
+        	</div><!--/.nav-collapse -->
+      	  </div>
+    	</nav>
+
+    	<div class="container" ng-controller ="statController">
+        <div class="row">
+          <div class="col-md-4" >
+            <fieldset  class="fieldset">
+              <form name="myForm" ng-submit="submit()" novalidate>
+                Select month: <select ng-model="fidelsFirm.day" ng-options="month for month in theMonths"></select> &nbsp;&nbsp;
+                <p></p>
+                <div>
+                  Number of car(s): &nbsp; <input type="number" name="car" ng-model="fidelsFirm.car">                         
+                </div>        
+                <div>
+                  Number of boat(s):  &nbsp;&nbsp;&nbsp;&nbsp;<input type="number" name="boat" ng-model="fidelsFirm.boat">                         
+                </div>           
+                <div>  
+                  <div>
+                  Number of motor-bike(s): <input type="number" name="motor_bike" ng-model="fidelsFirm.motor_bike">         
+                  <br><br>                         
+                </div>                        
+                <div>
+                  <button type="submit" ng-click="add(fidelsFirm)" class="btn btn-default">Add montly sales</button> &nbsp;&nbsp;    {{badForm}}            
+                </div>        
+              </form>           
+            </fieldset>
+          </div><!-- ending of col-md-4 -->
+          <div class="col-md-8 fieldset">
+            <div >   
+              <div id="chart"></div>      
+            </div>
+          </div><!-- ending of col-md-8 -->
+        </div><!-- ending of row -->
+
+        <div class="row">
+          <div class="col-md-4 " >
+            <table class="table table-striped fieldset">
+        <thead>
+        <tr >
+          <th><h5>Date</h5></th> 
+          <th><h5>Cars</h5></th>
+          <th><h5>Boats</h4></th>
+          <th><h5>Motor-bikes</h5></th>          
+          <th></th>          
+        </tr>
+      </thead>
+      <tbody><!-- Records that falls within the option range -->
+      <tr ng-repeat="record in statObj| orderBy:'day'">
+        <td><strong>{{record.day}}</strong></td>
+        <td>{{record.car}}</td>
+        <td>{{record.boat}}</td>
+        <td>{{record.motor_bike}}</td>        
+        <td><button type="submit" ng-click="remove(record._id)" class="btn btn-danger">Del</button></td>        
+        </tr>
+        </tbody>
+      </table>
+          </div><!-- ending of col-md-4 -->
+          <div class="col-md-8 fieldset">
+            <div >
+            <strong>Select chart style: </strong><select type="text" ng-model="shapeValue" ng-options="shape for shape in shapes"></select>        
+            <p></p>                 
+            <div id="chart2"></div>      
+            </div>
+          </div><!-- ending of col-md-8 -->
+        </div><!-- ending of row -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/app.js"></script>
+	  </div>	
+	</body>	
+</html>
+
+
+
+
+
+
+
+
+
+
